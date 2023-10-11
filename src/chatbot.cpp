@@ -44,7 +44,55 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+// copy contructor
+ChatBot::ChatBot(const ChatBot& sourceChatBot)
+{
+    _chatLogic = sourceChatBot._chatLogic;
+    _rootNode = sourceChatBot._rootNode;
+    _image = new wxBitmap(*sourceChatBot._image);
+}
 
+// copy assignment constructor
+ChatBot &ChatBot::operator=(const ChatBot& sourceChatBot)
+{
+    if (this == &sourceChatBot) return *this;
+
+    delete _image;
+    _chatLogic = sourceChatBot._chatLogic;
+    _rootNode = sourceChatBot._rootNode;
+    _image = new wxBitmap(*sourceChatBot._image);
+
+    return *this;
+}
+
+// move constructor
+ChatBot::ChatBot(ChatBot&& sourceChatBot)
+{
+    _chatLogic = sourceChatBot._chatLogic;
+    _rootNode = sourceChatBot._rootNode;
+    _image = sourceChatBot._image;
+    
+    sourceChatBot._chatLogic = nullptr;
+    sourceChatBot._rootNode = nullptr;
+    sourceChatBot._image = nullptr;
+}
+
+// move assignment constructor
+ChatBot &ChatBot::operator=(ChatBot&& sourceChatBot)
+{
+    if (this == &sourceChatBot) return *this;
+
+    delete _image;
+    _chatLogic = sourceChatBot._chatLogic;
+    _rootNode = sourceChatBot._rootNode;
+    _image = sourceChatBot._image;
+
+    sourceChatBot._chatLogic = nullptr;
+    sourceChatBot._rootNode = nullptr;
+    sourceChatBot._image = nullptr;
+
+    return *this;
+}
 ////
 //// EOF STUDENT CODE
 
