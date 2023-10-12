@@ -47,6 +47,8 @@ ChatBot::~ChatBot()
 // copy contructor
 ChatBot::ChatBot(const ChatBot& sourceChatBot)
 {
+    std::cout << "ChatBot Copy Constructor\n";
+
     _chatLogic = sourceChatBot._chatLogic;
     _rootNode = sourceChatBot._rootNode;
     _image = new wxBitmap(*sourceChatBot._image);
@@ -55,6 +57,8 @@ ChatBot::ChatBot(const ChatBot& sourceChatBot)
 // copy assignment constructor
 ChatBot &ChatBot::operator=(const ChatBot& sourceChatBot)
 {
+    std::cout << "ChatBot Copy Assignment Constructor\n";
+
     if (this == &sourceChatBot) return *this;
 
     delete _image;
@@ -68,6 +72,8 @@ ChatBot &ChatBot::operator=(const ChatBot& sourceChatBot)
 // move constructor
 ChatBot::ChatBot(ChatBot&& sourceChatBot)
 {
+    std::cout << "ChatBot Move Constructor\n";
+
     _chatLogic = sourceChatBot._chatLogic;
     _rootNode = sourceChatBot._rootNode;
     _image = sourceChatBot._image;
@@ -80,6 +86,8 @@ ChatBot::ChatBot(ChatBot&& sourceChatBot)
 // move assignment constructor
 ChatBot &ChatBot::operator=(ChatBot&& sourceChatBot)
 {
+    std::cout << "ChatBot Move Assignment Constructor\n";
+
     if (this == &sourceChatBot) return *this;
 
     delete _image;
